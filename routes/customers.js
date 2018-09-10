@@ -17,7 +17,7 @@ router.post('/', async(req,res) => {
         phone: req.body.phone, 
         isGold: req.body.isGold 
     });
-        await customer.save();
+    await customer.save();
 
     res.send(customer);
 });
@@ -31,22 +31,21 @@ router.put('/:id', async (req,res) => {
         { name: req.body.name, isGold: req.body.isGold, phone: req.body.phone },
         { new: true
         });
-    if(!customer) return res.status(404).send('Customer is not found for given id');
+    if(!customer) return res.status(404).send('Customer is not found for given id.');
 
     res.send(customer)
 });
 
 router.delete('/:id', async(req,res) => {
     const customer = await Customer.findByIdAndRemove(req.params.id);
-    if(!customer) return res.status(404),send('Customer with given Id is not found');
+    if(!customer) return res.status(404),send('Customer with given Id is not found.');
 
     res.send(customer);
 });
 
 router.get('/:id',async (req,res) => {
     const customer = await Customer.findById(req.params.id);
-
-    if(!customer) return res.status(404).send('Customer with given id is not found');
+    if(!customer) return res.status(404).send('Customer with given id is not found.');
 
     res.send(customer);
 });
